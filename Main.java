@@ -1,19 +1,44 @@
-import java.util.Arrays;
-import java.util.Scanner;
-
 public class Main {
+    static class Animal {
+        protected String name;
+
+        public Animal(String name) {
+            this.name = name;
+        }
+
+        public String greet() {
+
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(" says hello");
+
+            return stringBuilder.toString();
+
+        }
+    }
+
+    static class Dog extends Animal {
+
+        public Dog(String name) {
+
+            super(name);
+        }
+
+        @Override
+        public String greet() {
+
+            StringBuilder stringBuilder = new StringBuilder(this.name);
+            stringBuilder.append(" says woof");
+
+            return stringBuilder.toString();
+
+        }
+    }
+
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int[] nums = Arrays.stream(sc.nextLine().split(" "))
-                .mapToInt(Integer::parseInt)
-                .toArray();
-        // Use streams to filter evens, square, sum, and print.
+        java.util.Scanner sc = new java.util.Scanner(System.in);
+        String name = sc.nextLine();
 
-        int sum = Arrays.stream(nums)
-                .filter(n -> n % 2 == 0)
-                .map(n -> n * n)
-                .sum();
-
-        System.out.println(sum);
+        Dog d = new Dog(name);
+        System.out.println(d.greet());
     }
 }
